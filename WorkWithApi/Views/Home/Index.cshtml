@@ -1,0 +1,67 @@
+﻿@using Newtonsoft.Json;
+@using Newtonsoft.Json.Linq;
+@using System.Collections.Generic;
+@model JToken;
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Companies</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content=" width=device-width" />
+    <link href="~/css/styles.css" rel="stylesheet"/>
+</head>
+<body>
+    <p><b>Эта страница работает</b></p>
+    @for (int i = 0; i < Model.Count(); i++)
+    {
+        <p>@(i + 1) страница:</p>
+        <div>Id @Model[i]["Id"], Photolab Id: @Model[i]["PhotolabId"], Custom Id: @Model[i]["CustomId"] </div>
+        <div>
+            Source Order Id: @Model[i]["SourceOrderId"],  Manager Id: @Model[i]["ManagerId"],
+            Assigned ToId: @Model[i]["AssignedId"]
+        </div>
+        <div>Title: @Model[i]["Title"], TrackingUrl: @Model[i]["TrackingUrl"], Tracking Number: @Model[i]["TrackingNumber"]</div>
+        <div>
+            Статус: @Model[i]["Status"], RenderStatus: @Model[i]["RenderStatus"],
+            Статус оплаты: @Model[i]["PaymentStatus"]
+        </div>
+        <div class="block">
+            <b>Адрес доставки:</b>
+            <div>ZipCode: @Model[i]["DeliveryAddress"]["ZipCode"], </div>
+            <div>Адрес: @Model[i]["DeliveryAddress"]["AddressLine1"],  Второй адрес: @Model[i]["DeliveryAddress"]["AddressLine2"]</div>
+            <div>Описание: @Model[i]["DeliveryAddress"]["Description"], </div>
+            <div>Страна: @Model[i]["DeliveryAddress"]["Country"],
+            Регион: @Model[i]["DeliveryAddress"]["State"], Город: @Model[i]["DeliveryAddress"]["City"],</div>
+            <div>ФИО: @Model[i]["DeliveryAddress"]["FullName"]</div>
+            <div>Телефон: @Model[i]["DeliveryAddress"]["Phone"]</div>
+        </div>
+        <div class="block">
+            <b>Место отправки</b>
+            <div>Id: @Model[i]["Shipping"]["Id"], Название: @Model[i]["Shipping"]["Title"],</div> 
+            <div>Телефон: @Model[i]["Shipping"]["Phone"], Эл. почта: @Model[i]["Shipping"]["Email"],</div>
+            <div>Type: @Model[i]["Shipping"]["Type"]</div>
+        </div>
+        <div>Comments Count: @Model[i]["CommentsCount"]</div>
+        <div>Download Link: @Model[i]["DownloadLink"]</div>
+        <div>Preview Image Url: @Model[i]["PreviewImageUrl"]</div>
+        <div>
+            Цена: @Model[i]["Price"], Скидка: @Model[i]["DiscountTitle"],
+            Скидка на товар: @Model[i]["DiscountPrice"], Цена доставки: @Model[i]["DeliveryPrice"]
+        </div>
+        <div><b>Итого: @Model[i]["TotalPrice"],   Оплачено:@Model[i]["PaidPrice"]</b></div>
+        <div>User Id: @Model[i]["UserId"], User Company Account Id: @Model[i]["UserCompanyAccountId"]</div>
+        <div>Дата создания: @Model[i]["DateCreated"], Дата изменения: @Model[i]["DateModified"] </div>
+        <div>Дата оплаты: @Model[i]["DatePaid"], Date Ready: @Model[i]["DateReady"]</div>
+        <div>Last Downloaded Payment Document: @Model[i]["LastDownloadedPaymentDocument"]</div>
+        <div>
+            Payment System Unique Id: @Model[i]["PaymentSystemUniqueId"],
+            Google Client Id: @Model[i]["GoogleClientId"]
+        </div>
+        <div>Contractor Orders: @Model[i]["ContractorOrders"]</div>
+
+        <hr />
+    }
+
+</body>
+
+</html>
